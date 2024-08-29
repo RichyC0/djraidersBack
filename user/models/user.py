@@ -11,8 +11,10 @@ class User(models.Model):
       ('ACTIVE', 'active'),
       ('INACTIVE', 'inactive'),
       ('DELETED', 'deleted')
-    ]
-  )
+    ],
+    default = 'CREATED'
+  ),
+  changePassword = models.BooleanField(default = True)
   created_at = models.DateField(auto_now_add = True)
   updated_at = models.DateField(auto_now = True)
   
