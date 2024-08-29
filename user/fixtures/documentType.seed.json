@@ -1,0 +1,16 @@
+[
+  {
+    "model": "user.DocumentType",
+    "fields": {
+      "code": "CC",
+      "name": "Cedula de Ciudadania"
+    }
+  },
+  {
+    "model": "user.DocumentType",
+    "fields": {
+      "code": "CE",
+      "name": "Cedula de Extranjeria"
+    }
+  }
+]

@@ -13,7 +13,6 @@ ALLOWED_HOSTS = []
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -21,6 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user', 
+    'store'
 ]
 
 MIDDLEWARE = [
@@ -33,7 +34,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'djraidersBack.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -51,7 +52,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'djraidersBack.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
+
 DATABASES = {
     'default': {       
         'ENGINE': 'django.db.backends.mysql',
@@ -78,11 +80,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
