@@ -2,6 +2,7 @@ from django.db import models
 from .brand import Brand
 from .size import Size
 from .category import Category
+from .sizeGender import SizeGender
 
 class Product(models.Model):
   id = models.AutoField(primary_key = True)
@@ -19,6 +20,7 @@ class Product(models.Model):
       ('OUT_OF_STOCK', 'out_of_stoke')
     ]
   )
+  sizeGender = models.ForeignKey(SizeGender, on_delete = models.DO_NOTHING)
   category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, null=False)
   created_at = models.DateField(auto_now_add = True)
   updated_at = models.DateField(auto_now = True)

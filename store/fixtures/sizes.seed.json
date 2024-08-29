@@ -1,0 +1,130 @@
+[
+  {
+    "model": "store.SizeType",
+    "pk": 1,
+    "fields": {
+      "code": "CLOTHING",
+      "name": "Vestimenta"
+    }
+  },
+  {
+    "model": "store.SizeType",
+    "pk": 2,
+    "fields": {
+      "code": "FOOTWEAR",
+      "name": "Calzado"
+    }
+  },
+  {
+    "model": "store.SizeGender",
+    "pk": 1,
+    "fields": {
+      "code": "MEN",
+      "name": "Hombre"
+    }
+  },
+  {
+    "model": "store.SizeGender",
+    "pk": 2,
+    "fields": {
+      "code": "FEMALE",
+      "name": "Mujer"
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 1,
+    "fields": {
+      "size": "XS",
+      "sizeType": 1
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 2,
+    "fields": {
+      "size": "S",
+      "sizeType": 1
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 3,
+    "fields": {
+      "size": "M",
+      "sizeType": 1
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 4,
+    "fields": {
+      "size": "L",
+      "sizeType": 1
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 5,
+    "fields": {
+      "size": "XL",
+      "sizeType": 1
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 6,
+    "fields": {
+      "size": "36",
+      "sizeType": 2
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 7,
+    "fields": {
+      "size": "37",
+      "sizeType": 2
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 8,
+    "fields": {
+      "size": "38",
+      "sizeType": 2
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 9,
+    "fields": {
+      "size": "39",
+      "sizeType": 2
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 10,
+    "fields": {
+      "size": "40",
+      "sizeType": 2
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 11,
+    "fields": {
+      "size": "41",
+      "sizeType": 2
+    }
+  },
+  {
+    "model": "store.Size",
+    "pk": 12,
+    "fields": {
+      "size": "42",
+      "sizeType": 2
+    }
+  }
+]
