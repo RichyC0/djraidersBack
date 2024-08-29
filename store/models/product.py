@@ -6,7 +6,7 @@ from .category import Category
 class Product(models.Model):
   id = models.AutoField(primary_key = True)
   name = models.CharField(max_length = 100)
-  brandId = models.ForeignKey(Brand, on_delete=models.DO_NOTHING, null=False)
+  brand = models.ForeignKey(Brand, on_delete=models.DO_NOTHING, null=False)
   size = models.ForeignKey(Size, on_delete=models.DO_NOTHING, null=False)
   color = models.CharField(max_length= 50)
   price = models.IntegerField()
@@ -19,7 +19,7 @@ class Product(models.Model):
       ('OUT_OF_STOCK', 'out_of_stoke')
     ]
   )
-  categoryId = models.ForeignKey(Category, on_delete=models.DO_NOTHING, null=False)
+  category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, null=False)
   created_at = models.DateField(auto_now_add = True)
   updated_at = models.DateField(auto_now = True)
   

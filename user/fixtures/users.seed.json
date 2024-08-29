@@ -1,0 +1,30 @@
+[
+  {
+    "model": "user.Person",
+    "pk": 1,
+    "fields": {
+      "documentType": 1,
+      "firstName": "Richy",
+      "lastName": "Castrillon",
+      "surName": "Osorio",
+      "documentNumber": "105387878",
+      "email": "richyco@test.com",
+      "password": "03bd040b661b24f4bec1743f8f58d780c03e4baea0954155689a78e9357688fb"
+    }
+  },
+  {
+    "model": "user.User",
+    "pk": 1,
+    "fields": {
+      "person": 1
+    }
+  },
+  {
+    "model": "user.PersonRole",
+    "pk": 1,
+    "fields": {
+      "person": 1,
+      "role": 1
+    }
+  }
+]

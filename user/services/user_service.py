@@ -5,17 +5,21 @@ from ..models.user import Person, User
 from ..models.documentType import DocumentType
 from ..exceptions.global_exception import GlobalException
 from django.db import IntegrityError
+import environ
+
+env = environ.Env()
 
 class UserService:
   def __init__(self):
     self.userRepository = UserRepository()
     self.personRepository = PersonRepository()
     self.documentTypeRepository = DocumentTypeRepository()
+    self.secretPassword = env('GENERIC_PASSWORD')
     
   def register(self, user):
     person = self.savePerson(user)
     self.saveUser(person)  
-    return person.id
+    return person.uuid
   
   def savePerson(self, person):
     try:
@@ -27,7 +31,7 @@ class UserService:
         surName = person.get ("surName"),
         documentNumber = person.get("documentNumber"),
         email = person.get("email"),
-        password = person.get("password")
+        password = self.secretPassword
       )
       self.personRepository.register(person)
       return person

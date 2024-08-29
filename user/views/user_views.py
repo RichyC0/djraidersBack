@@ -7,8 +7,7 @@ def registerUser(request):
   try:
     userService = UserService()
     body = json.loads(request.body)
-    userService.register(body)
-    return JsonResponse(data = {}, status = 201)
+    return JsonResponse(data = {"id": userService.register(body) }, status = 201)
   except GlobalException as e:
     return JsonResponse(status = e.status_code, safe = False, data = {"code": e.message})
   except Exception as ex:
