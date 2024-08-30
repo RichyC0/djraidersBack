@@ -11,13 +11,11 @@ def assigRole(request):
   try:
     roleService = RoleService()
     body = json.loads(request.body)
-    print(body)
     roleService.assignRole(body)
     return JsonResponse(data = {}, status = 201)
   except GlobalException as e:
     return JsonResponse(status = e.status_code, safe = False, data = {"code": e.message})
   except Exception as ex:
-    print(ex)
     return JsonResponse(status = 500, safe = False, data = {"code": "INTERNAL_SERVER_ERROR"}) 
 
 

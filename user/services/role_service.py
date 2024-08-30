@@ -15,7 +15,6 @@ class RoleService:
     return list(data) if data.exists() else []
   
   def assignRole(self, body):
-    print(body)
     rolePerson = PersonRole(
       personId = self.getPerson(body.get("personId")),
       roleId = self.getRole(body.get("roleId"))
