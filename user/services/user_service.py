@@ -1,11 +1,8 @@
-from user.repositories.user_repository import UserRepository
-from user.repositories.person_repository import PersonRepository
-from user.repositories.documentType_repository import DocumentTypeRepository
-from user.repositories.client_repository import ClientRepository
+from ..repositories import UserRepository, PersonRepository, DocumentTypeRepository, ClientRepository
 from ..models.user import Person, User
 from ..models.client import Client
 from ..models.documentType import DocumentType
-from ..exceptions.global_exception import GlobalException
+from app.exceptions import GlobalException
 from django.db import IntegrityError
 import environ
 

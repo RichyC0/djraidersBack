@@ -10,7 +10,6 @@ class UserRepository:
       'person__documentType',
       'person__personrole__role'
     ).annotate(
-      change_password = F('changePassword'),
       uuid = F('person__uuid'),
       firstName = F('person__firstName'),
       secondName = F('person__secondName'),
@@ -20,7 +19,7 @@ class UserRepository:
       role = F('person__personrole__role__name')
     ).exclude(
       person__personrole__role__code = 'SUPERADMIN'
-    ).values('uuid', 'firstName', 'secondName', 'lastName', 'surName', 'documentType', 'change_password', 'role')
+    ).values('uuid', 'firstName', 'secondName', 'lastName', 'surName', 'documentType', 'changePassword', 'role')
 
   
   

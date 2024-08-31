@@ -1,12 +1,15 @@
+from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
 from user.services.role_service import RoleService
 import json
-from ..exceptions.global_exception import GlobalException
+from app.exceptions import GlobalException
 
+@require_http_methods(['GET'])
 def getAllRoles(request):
   roleService = RoleService()
   return JsonResponse(roleService.getAll(), status = 200, safe = False)
 
+@require_http_methods(['POST'])
 def assigRole(request):
   try:
     roleService = RoleService()

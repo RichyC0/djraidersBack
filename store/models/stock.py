@@ -11,4 +11,4 @@ class Stock(models.Model):
   updated_at = models.DateField(auto_now = True)
   
 class Meta:
-    db_table = 'stock'
+  db_table = 'stock'

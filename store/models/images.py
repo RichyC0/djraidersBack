@@ -7,4 +7,4 @@ class Images(models.Model):
   route = models.TextField()
   
 class Meta:
-    db_table = 'images'
+  db_table = 'images'

@@ -1,0 +1,6 @@
+from .client_repository import ClientRepository
+from .documentType_repository import DocumentTypeRepository
+from .person_repository import PersonRepository
+from .personRole_repository import PersonRolRepository
+from .role_repository import RoleRepository
+from .user_repository import UserRepository

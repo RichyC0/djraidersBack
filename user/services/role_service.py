@@ -1,8 +1,6 @@
-from user.repositories.role_repository import RoleRepository
-from user.repositories.person_repository import PersonRepository
-from user.repositories.personRole_repository import PersonRolRepository
+from ..repositories import RoleRepository, PersonRepository, PersonRolRepository
 from ..models import Person, Role, PersonRole
-from ..exceptions.global_exception import GlobalException
+from app.exceptions import GlobalException
 
 class RoleService:
   def __init__(self):
@@ -16,8 +14,8 @@ class RoleService:
   
   def assignRole(self, body):
     rolePerson = PersonRole(
-      personId = self.getPerson(body.get("personId")),
-      roleId = self.getRole(body.get("roleId"))
+      person = self.getPerson(body.get("personId")),
+      role = self.getRole(body.get("roleId"))
     )
     self.personRoleRepository.register(rolePerson)
     

@@ -5,3 +5,5 @@ from .product import Product
 from .images import Images
 from .productImages import PrudctoImages
 from .stock import Stock
+from .sizeType import SizeType
+from .sizeGender import SizeGender

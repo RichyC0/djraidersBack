@@ -1,0 +1,6 @@
+from .category_repository import CategoryRepository
+from .sizeType_repository import SizeTypeRepository
+from .product_repository import ProductRepository
+from .size_repository import SizeRepository
+from .sizeGender_repository import SizeGenderRepository
+from .brand_repository import BrandRepository

@@ -16,13 +16,6 @@
   {
     "model": "user.Role",
     "fields": {
-      "code": "CLIENT",
-      "name": "Cliente"
-    }
-  },
-  {
-    "model": "user.Role",
-    "fields": {
       "code": "STOREKEEPER",
       "name": "Almacenista"
     }
