@@ -9,3 +9,4 @@ class PersonRole(models.Model):
   
   class Meta:
     db_table = 'person_role'
+    unique_together = ('person', 'role')

@@ -1,14 +1,19 @@
-from ..repositories import ProductRepository, CategoryRepository, SizeRepository, SizeGenderRepository, BrandRepository
-from ..models import Product, Category, Size, SizeGender, Brand
+from .size_service import SizeService
+from ..repositories import ProductRepository
+from ..models import Product
 from app.exceptions import GlobalException
+from django.core.exceptions import ValidationError
+from .category_service import CategoryService
+from .brand_service import BrandService
+from .sizeGender_service import SizeGenderService
 
 class ProductService:
   def __init__(self):
     self.productRepository = ProductRepository()
-    self.categoryRepository = CategoryRepository()
-    self.sizeRepository = SizeRepository()
-    self.sizeGenderRepository = SizeGenderRepository()
-    self.brandRepository = BrandRepository()
+    self.categoryService = CategoryService()
+    self.sizeService = SizeService()
+    self.sizeGenderService = SizeGenderService()
+    self.brandService = BrandService()
     
   def getAll(self):
     data = self.productRepository.getAll()
@@ -22,12 +27,12 @@ class ProductService:
     productModel = Product(
       name = product.get('name'),
       description = product.get('description'),
-      brand = self.getBrand(product.get('brandId')),
-      size = self.getSize(product.get('sizeId')),
+      brand = self.brandService.get(product.get('brand_id')),
+      size = self.sizeService.get(product.get('size_id')),
       color = product.get('color'),
       price = product.get('price'),
-      category = self.getCategory(categoryId),
-      sizeGender = self.getSizeGender(product.get('sizeGenderId'))
+      category = self.categoryService.get(categoryId),
+      sizeGender = self.sizeGenderService.get(product.get('sizeGender_id'))
     )
     self.productRepository.register(productModel)
     return productModel.uuid
@@ -35,44 +40,18 @@ class ProductService:
   def getById(self, uuid):
     try:
       return self.productRepository.getById(uuid)
-    except Product.DoesNotExist:
-      raise GlobalException('PRODUCT_ID_NOT_VALID')
+    except (Product.DoesNotExist, ValidationError):
+      raise GlobalException('PRODUCT_ID_NOT_VALID', 404)
   
   def update(self, uuid, categoryId, product):
     productModel = self.productRepository.get(uuid)
     productModel.name = product.get('name') if product.get('name') != None else productModel.name
     productModel.description = product.get('description') if product.get('description') != None else productModel.description
-    productModel.brand = self.getBrand(product.get('brandId'))
-    productModel.size = self.getSize(product.get('sizeId'))
+    productModel.brand = self.brandService.get(product.get('brand_id'))
+    productModel.size = self.sizeService.get(product.get('size_id'))
     productModel.color = product.get('color') if product.get('color') != None else productModel.color
     productModel.price = product.get('price') if product.get('price') != None else productModel.price
-    productModel.category = self.getCategory(categoryId)
-    productModel.sizeGender = self.getSizeGender(product.get('sizeGenderId'))
+    productModel.category = self.categoryService.get(categoryId)
+    productModel.sizeGender = self.sizeGenderService.get(product.get('sizeGender_id'))
     self.productRepository.save(productModel)
-    
-  def getCategory(self, uuid):
-    try:
-      return self.categoryRepository.getById(uuid)
-    except Category.DoesNotExist:
-      raise GlobalException("CATEGORY_ID_NOT_VALID")
-    
-  def getBrand(self, id):
-    try:
-      return self.brandRepository.get(id)
-    except Brand.DoesNotExist:
-      raise GlobalException("BRAND_ID_NOT_VALID")
-    
-  def getSize(self, id):
-    try:
-      return self.sizeRepository.get(id)
-    except Size.DoesNotExist:
-      raise GlobalException("SIZE_ID_NOT_VALID")
-  
-  def getSizeGender(self, id):
-    try:
-      return self.sizeGenderRepository.get(id)
-    except SizeGender.DoesNotExist:
-      raise GlobalException("SIZEGENDER_ID_NOT_VALID")
-    
-    
     

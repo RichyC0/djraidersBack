@@ -18,8 +18,20 @@ class ProductRepository:
     return querySet.filter(category__uuid = categoryId).values(*self.values)
   
   def getById(self, uuid):
-    querySet = self.getAllQuery()
-    return querySet.filter(uuid = uuid).values(*self.values).first()
+    return Product.objects.select_related('category').filter(uuid = uuid).annotate(
+     categoryId = F('category__uuid') 
+    ).values(
+      'uuid',
+      'name',
+      'description',
+      'color',
+      'price',
+      'state',
+      'brand_id',
+      'categoryId',
+      'size_id', 
+      'sizeGender_id'
+      ).first()
   
   def get(self, uuid):
     return Product.objects.get(uuid = uuid)

@@ -63,3 +63,20 @@ class UserService:
   def getAll(self):
     data = self.userRepository.getAll()
     return list(data)
+  
+  def update(self, uuid, person):
+    personModel = self.personRepository.getByUUID(uuid)
+    personModel.firstName = person.get('firstName') if person.get('firstName') != None else personModel.firstName
+    personModel.secondName = person.get('secondName') if person.get('secondName') != None else personModel.secondName
+    personModel.lastName = person.get('lastdName') if person.get('lastName') != None else personModel.lasttName
+    personModel.lastName = person.get('surName') if person.get('surName') != None else personModel.surName
+    personModel.documentNumber = person.get('documentNumber') if person.get('documentNumber') != None else personModel.documentNumber
+    personModel.email = person.get('email') if person.get('email') != None else personModel.email
+    personModel.documentType = person.get('documentType_id')
+    self.personRepository.save(personModel)
+    
+  def getUser(self, uuid):
+    data = self.userRepository.getUser(uuid)
+    if not data:
+      raise GlobalException("USER_NOT_FOUND")
+    return data

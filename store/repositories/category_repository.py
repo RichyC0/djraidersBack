@@ -7,12 +7,13 @@ class CategoryRepository:
     return Category.save(user)
   
   def getAll(self):
-    return Category.objects.select_related('sizeType').annotate(
-      size_type = F('sizeType__name'),
-    ).values('uuid', 'name', 'description', 'size_type')
+    return Category.objects.values('uuid', 'name', 'description', 'sizeType')
   
   def getById(self, id):
-    return Category.objects.get(uuid = id)
+    return Category.objects.filter(uuid = id).values('uuid', 'name', 'description', 'sizeType_id').first()
   
   def save(self, category):
     category.save()
+  
+  def get(self, id):
+    return Category.objects.get(uuid = id)

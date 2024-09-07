@@ -25,7 +25,7 @@ def registerClient(request):
     return JsonResponse(status = e.status_code, safe = False, data = {"code": e.message})
   except Exception:
     return JsonResponse(status = 500, safe = False, data = {"code": "INTERNAL_SERVER_ERROR"})
-
+  
 @require_http_methods(['GET'])
 def getAllUsers(request):
   try:
@@ -35,3 +35,29 @@ def getAllUsers(request):
     return JsonResponse(status = e.status_code, safe = False, data = {"code": e.message})
   except Exception as ex:
     return JsonResponse(status = 500, safe = False, data = {"code": "INTERNAL_SERVER_ERROR"})
+  
+@require_http_methods(['PATCH', 'OPTIONS'])
+def updatePerson(request, personId):
+  try:
+    if request.method != 'OPTIONS':
+      userService = UserService()
+      body = json.loads(request.body)
+      userService.update(personId, body)
+      return JsonResponse({}, status = 204)
+    else:
+      return JsonResponse({}, status = 200)
+  except GlobalException as e:
+    return JsonResponse(status = e.status_code, safe = False, data = {"code": e.message})
+  except Exception as ex:
+    return JsonResponse(status = 500, safe = False, data = {"code": "INTERNAL_SERVER_ERROR"})
+  
+@require_http_methods(['GET'])
+def getUser(request, personId):
+  try:
+    userService = UserService()
+    return JsonResponse(userService.getUser(personId), status = 200, safe = False)
+  except GlobalException as e:
+    return JsonResponse(status = e.status_code, safe = False, data = {"code": e.message})
+  except Exception as ex:
+    return JsonResponse(status = 500, safe = False, data = {"code": "INTERNAL_SERVER_ERROR"})
+  

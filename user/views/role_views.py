@@ -9,6 +9,11 @@ def getAllRoles(request):
   roleService = RoleService()
   return JsonResponse(roleService.getAll(), status = 200, safe = False)
 
+@require_http_methods(['GET'])
+def getAllPersonRoles(request, personId):
+  roleService = RoleService()
+  return JsonResponse(roleService.getAllUserRole(personId), status = 200, safe = False)
+
 @require_http_methods(['POST'])
 def assigRole(request):
   try:

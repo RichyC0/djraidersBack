@@ -17,12 +17,12 @@ class Product(models.Model):
   state = models.CharField(
     max_length=20,
     choices=[
-      ('CREATED', 'created'),
-      ('AVAILABLE', 'available'),
-      ('NOT_AVAILABLE', 'not_available'),
-      ('OUT_OF_STOCK', 'out_of_stoke')
+      ('Creado', 'created'),
+      ('Disponible', 'available'),
+      ('No Disponible', 'not_available'),
+      ('Sin Inventario', 'out_of_stoke')
     ],
-    default='CREATED'
+    default='Creado'
   )
   sizeGender = models.ForeignKey(SizeGender, on_delete = models.DO_NOTHING)
   category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, null=False)

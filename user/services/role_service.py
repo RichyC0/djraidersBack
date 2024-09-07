@@ -1,6 +1,7 @@
 from ..repositories import RoleRepository, PersonRepository, PersonRolRepository
 from ..models import Person, Role, PersonRole
 from app.exceptions import GlobalException
+from django.db import IntegrityError
 
 class RoleService:
   def __init__(self):
@@ -17,7 +18,14 @@ class RoleService:
       person = self.getPerson(body.get("personId")),
       role = self.getRole(body.get("roleId"))
     )
-    self.personRoleRepository.register(rolePerson)
+    try:
+      self.personRoleRepository.register(rolePerson)
+    except IntegrityError:
+      raise GlobalException('ROLE_ID_PREVIOUSLY_ASSIGNED')
+    
+  def getAllUserRole(self, personId):
+    data = self.personRoleRepository.getAllPersonRole(personId)
+    return list(data) if data.exists() else []
     
   def getPerson(self, uuid):
     try:
